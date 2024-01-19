@@ -16,7 +16,6 @@ function askForInput() {
   rl.question('', (answer) => {
     if (answer === 'exit') {
       console.log(buy);
-      // readStream.push(answer)
       rl.close();
       process.exit();
     }
