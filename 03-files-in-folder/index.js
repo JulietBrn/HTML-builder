@@ -12,10 +12,15 @@ fs.readdir(folderPath,
     else {
       files.forEach(file => {
         const filePath = path.join(folderPath, file.name);
-        const stats = fs.statSync(filePath);
-        if (stats.isFile()) {
-          console.log(`${file.name.split('.').join(' - ')} - ${stats.size}b`);
-        };
+        fs.stat(filePath, (err, stats) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          if (stats.isFile()) {
+            console.log(`${file.name.split('.').join(' - ')} - ${stats.size}b`);
+          };
+        });
       });
     };
   });
